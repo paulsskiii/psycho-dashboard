@@ -1,0 +1,10 @@
+.shell {
+  padding-bottom: calc(56px + env(safe-area-inset-bottom) + var(--space-6));
+}
+
+@media (min-width: 1024px) {
+  .shell {
+    margin-left: 200px;
+    padding-bottom: var(--space-8);
+  }
+}

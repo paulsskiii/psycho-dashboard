@@ -1,0 +1,14 @@
+{
+  "name": "@psycho/tokens",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": "./dist/index.ts",
+    "./tokens.css": "./dist/tokens.css"
+  },
+  "scripts": {
+    "build": "node build.mjs",
+    "validate": "node scripts/validate-all.mjs"
+  }
+}

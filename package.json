@@ -1,0 +1,14 @@
+{
+  "name": "psycho",
+  "private": true,
+  "packageManager": "pnpm@11.9.0",
+  "scripts": {
+    "dev": "pnpm --filter @psycho/web dev",
+    "build": "pnpm --filter @psycho/web build",
+    "typecheck": "pnpm --filter @psycho/web typecheck",
+    "lint": "pnpm --filter @psycho/web lint",
+    "tokens": "pnpm --filter @psycho/tokens build",
+    "palette": "pnpm --filter @psycho/tokens validate",
+    "test:visual": "pnpm --filter @psycho/web test:visual"
+  }
+}

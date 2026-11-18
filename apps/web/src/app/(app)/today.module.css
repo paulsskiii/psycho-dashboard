@@ -1,0 +1,328 @@
+.page {
+  display: grid;
+  gap: var(--space-2);
+}
+
+.header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--space-4);
+  padding: var(--space-6) var(--space-4) 0;
+}
+
+.wordmark {
+  font-size: var(--fs-wordmark);
+  color: var(--ink);
+}
+
+.sync {
+  font-size: var(--fs-small);
+  color: var(--ink-3);
+  text-align: right;
+  white-space: nowrap;
+  padding-bottom: 6px;
+}
+
+/* Hero: the route line, full-bleed, with the figure and verdict on top of it. */
+.hero {
+  position: relative;
+  min-height: 340px;
+  display: grid;
+  align-items: end;
+  padding: var(--space-5) var(--space-4) var(--space-6);
+}
+
+/* On phones the line sits behind the big figure but stops above the verdict, so the sentence
+   stays legible. From 720 px it runs the full hero, beside the text column. */
+.route {
+  position: absolute;
+  inset: var(--space-4) 0 150px 0;
+  opacity: 0.9;
+}
+
+@media (min-width: 720px) {
+  .route {
+    inset: var(--space-4) 0 var(--space-4) 30%;
+  }
+}
+
+.heroText {
+  position: relative;
+  display: grid;
+  gap: var(--space-2);
+  max-width: 34rem;
+}
+
+.figure {
+  font-size: var(--fs-hero);
+  font-weight: 600;
+  line-height: 1;
+  font-variant-numeric: proportional-nums;
+}
+
+.band {
+  background: var(--surface);
+  padding: var(--space-6) var(--space-4);
+  display: grid;
+  gap: var(--space-4);
+  align-content: start;
+  min-width: 0;
+}
+
+.hero .band,
+p.band {
+  display: flex;
+}
+
+.heroText .band {
+  background: none;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  font-size: var(--fs-body);
+  font-weight: 600;
+}
+
+.verdict {
+  font-size: var(--fs-body);
+  color: var(--ink-2);
+  line-height: 1.45;
+  max-width: 36ch;
+}
+
+.note {
+  font-size: var(--fs-small);
+  color: var(--ink-3);
+  max-width: 40ch;
+}
+
+.asOf {
+  font-size: var(--fs-small);
+  font-weight: 400;
+  color: var(--ink-3);
+}
+
+.grid {
+  display: grid;
+  gap: var(--space-2);
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.side {
+  display: grid;
+  gap: var(--space-2);
+  align-content: start;
+}
+
+.sectionHead {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-3);
+  flex-wrap: wrap;
+}
+
+.sectionTitle {
+  font-size: var(--fs-section-title);
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.tiles {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  column-gap: var(--space-5);
+}
+
+.tiles > * {
+  border-top: 1px solid var(--rule);
+}
+
+.stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3) var(--space-6);
+  margin: 0;
+}
+
+.stats dt {
+  font-size: var(--fs-small);
+  color: var(--ink-3);
+}
+
+.stats dd {
+  margin: 0;
+  font-size: var(--fs-stat);
+  font-weight: 600;
+  line-height: 1.15;
+}
+
+.meta {
+  font-size: var(--fs-small);
+  color: var(--ink-2);
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--space-2);
+}
+
+.badge {
+  font-size: var(--fs-micro);
+  color: var(--ink-4);
+  border: 1px solid var(--rule);
+  padding: 0 var(--space-1);
+  line-height: 18px;
+}
+
+.countdown {
+  font-size: var(--fs-page-title);
+  color: var(--ink);
+}
+
+/* Week strip */
+.week {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: 2px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.day {
+  display: grid;
+  gap: var(--space-2);
+  justify-items: center;
+  padding: var(--space-2) 0;
+  background: var(--page);
+}
+
+.today {
+  box-shadow: inset 0 -2px 0 var(--brass);
+}
+
+.dayName {
+  font-size: var(--fs-small);
+  color: var(--ink-3);
+}
+
+.today .dayName {
+  color: var(--ink);
+  font-weight: 600;
+}
+
+.marks {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 4px;
+  min-height: 10px;
+}
+
+.done,
+.planned {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  flex: none;
+}
+
+.planned {
+  border: 1.5px solid var(--ink-3);
+}
+
+.legendLine {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--fs-micro);
+  color: var(--ink-3);
+}
+
+.legendItem {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin-left: var(--space-3);
+}
+
+/* Last activity */
+.activity {
+  display: grid;
+  gap: var(--space-3);
+  text-decoration: none;
+  color: inherit;
+}
+
+.activityName {
+  font-size: var(--fs-body);
+  font-weight: 600;
+}
+
+.open {
+  font-size: var(--fs-small);
+  color: var(--ink-2);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-color: var(--axis);
+}
+
+.activity:hover .open {
+  color: var(--ink);
+}
+
+@media (min-width: 720px) {
+  .header,
+  .hero,
+  .band {
+    padding-left: var(--space-7);
+    padding-right: var(--space-7);
+  }
+
+  .tiles {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .hero {
+    min-height: 420px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .grid {
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+  }
+
+  /* Phone order stays DOM order (overnight, form, race, week, last); on desktop the week strip
+     fills the space under Overnight beside the taller Form + Race column. */
+  .grid {
+    grid-template-areas:
+      "over over over over over over over side side side side side"
+      "week week week week week week week side side side side side"
+      "last last last last last last last last last last last last";
+  }
+
+  .overnight {
+    grid-area: over;
+  }
+
+  .side {
+    grid-area: side;
+  }
+
+  .weekBand {
+    grid-area: week;
+  }
+
+  .last {
+    grid-area: last;
+  }
+
+  .full {
+    grid-column: 1 / -1;
+  }
+}

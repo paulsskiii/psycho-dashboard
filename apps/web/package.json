@@ -1,0 +1,39 @@
+{
+  "name": "@psycho/web",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "predev": "pnpm --filter @psycho/tokens build",
+    "prebuild": "pnpm --filter @psycho/tokens build",
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "typecheck": "pnpm --filter @psycho/tokens build && tsc --noEmit",
+    "lint": "eslint .",
+    "test:visual": "playwright test"
+  },
+  "dependencies": {
+    "@psycho/tokens": "workspace:*",
+    "@supabase/ssr": "0.12.7",
+    "@supabase/supabase-js": "2.119.0",
+    "d3-array": "3.2.5",
+    "d3-scale": "4.0.3",
+    "d3-shape": "3.2.1",
+    "maplibre-gl": "6.16.0",
+    "next": "16.4.6",
+    "react": "19.3.1",
+    "react-dom": "19.3.1",
+    "server-only": "0.0.1"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.65.1",
+    "@types/d3-array": "3.2.2",
+    "@types/d3-scale": "4.0.9",
+    "@types/d3-shape": "3.2.0",
+    "@types/node": "26.6.6",
+    "@types/react": "19.3.0",
+    "eslint": "9.39.5",
+    "eslint-config-next": "16.4.6",
+    "typescript": "5.9.3"
+  }
+}

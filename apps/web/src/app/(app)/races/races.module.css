@@ -1,0 +1,53 @@
+.hero {
+  display: grid;
+  gap: var(--space-5);
+  align-items: end;
+}
+
+.raceName {
+  font-size: var(--fs-section-title);
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.raceMeta {
+  color: var(--ink-3);
+  font-size: var(--fs-small);
+  margin-top: var(--space-1);
+}
+
+.countdown {
+  font-size: var(--fs-hero);
+  color: var(--ink);
+  line-height: 1;
+  margin-top: var(--space-4);
+}
+
+.multiple {
+  display: grid;
+  gap: var(--space-2);
+  min-width: 0;
+}
+
+.multipleTitle {
+  font-size: var(--fs-small);
+  color: var(--ink-2);
+}
+
+.link {
+  color: var(--ink-2);
+  text-underline-offset: 3px;
+}
+
+@media (min-width: 1024px) {
+  .hero {
+    grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+  }
+}
+
+@media (min-width: 720px) {
+  .quad > div {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: var(--space-6);
+  }
+}

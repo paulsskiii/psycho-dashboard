@@ -1,0 +1,253 @@
+/* Stat tile */
+.tile {
+  display: grid;
+  gap: var(--space-1);
+  /* Four rows (label, value, delta, sparkline) shared across a row of tiles via subgrid. */
+  grid-row: span 4;
+  grid-template-rows: subgrid;
+  grid-template-columns: minmax(0, 1fr);
+  align-content: start;
+  min-width: 0;
+  padding: var(--space-3) 0;
+  background: none;
+  border: 0;
+  text-align: left;
+  cursor: pointer;
+  color: inherit;
+}
+
+.tile:hover .tileLabel {
+  color: var(--ink-2);
+}
+
+.tileTop {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-2);
+}
+
+.tileLabel {
+  font-size: var(--fs-small);
+  color: var(--ink-3);
+  min-width: 0;
+}
+
+.tileTop .badge {
+  flex: none;
+}
+
+.badge {
+  font-size: var(--fs-micro);
+  color: var(--ink-4);
+  border: 1px solid var(--rule);
+  padding: 0 var(--space-1);
+  line-height: 18px;
+}
+
+.tileValue {
+  font-size: var(--fs-stat);
+  font-weight: 600;
+  line-height: 1.1;
+  font-variant-numeric: proportional-nums;
+}
+
+.tileUnit {
+  font-size: var(--fs-small);
+  font-weight: 400;
+  color: var(--ink-3);
+  margin-left: var(--space-1);
+}
+
+.tileDelta {
+  font-size: var(--fs-small);
+  color: var(--ink-2);
+}
+
+.tileSpark {
+  align-self: end;
+  display: block;
+}
+
+/* Date range pill */
+.range {
+  justify-self: start;
+  max-width: 100%;
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 2px;
+  padding: 2px;
+  border: 1px solid var(--rule);
+  border-radius: var(--radius-pill);
+  background: var(--surface);
+}
+
+.rangeOption {
+  border: 0;
+  background: none;
+  color: var(--ink-2);
+  font-size: var(--fs-small);
+  min-height: 32px;
+  min-width: 44px;
+  padding: 0 var(--space-3);
+  border-radius: var(--radius-pill);
+  cursor: pointer;
+}
+
+.rangeOption:hover {
+  color: var(--ink);
+}
+
+.rangeOption[aria-checked="true"] {
+  background: var(--raised);
+  color: var(--ink);
+  box-shadow: inset 0 0 0 1px var(--brass);
+}
+
+/* Bottom sheet */
+.backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  background: rgb(28 22 19 / 0.7);
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.sheet {
+  width: 100%;
+  max-width: 640px;
+  max-height: 85dvh;
+  overflow: auto;
+  background: var(--raised);
+  border-radius: var(--radius-sheet) var(--radius-sheet) 0 0;
+  padding: var(--space-3) var(--space-5) calc(var(--space-6) + env(safe-area-inset-bottom));
+  animation: up 240ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+@keyframes up {
+  from {
+    transform: translateY(24px);
+    opacity: 0;
+  }
+}
+
+.grabber {
+  width: 36px;
+  height: 4px;
+  border-radius: 2px;
+  background: var(--axis);
+  margin: 0 auto var(--space-4);
+}
+
+.sheetHead {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: var(--space-4);
+  margin-bottom: var(--space-3);
+}
+
+.sheetTitle {
+  font-size: var(--fs-section-title);
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.close {
+  background: none;
+  border: 1px solid var(--rule);
+  color: var(--ink-2);
+  min-height: 32px;
+  padding: 0 var(--space-3);
+  cursor: pointer;
+}
+
+.sheetBody {
+  display: grid;
+  gap: var(--space-4);
+  color: var(--ink-2);
+}
+
+/* Nav: bottom bar on mobile, left rail from 1024 */
+.nav {
+  position: fixed;
+  z-index: 40;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: var(--raised);
+  border-radius: var(--radius-sheet) var(--radius-sheet) 0 0;
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+.navList {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.navLink {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 56px;
+  font-size: var(--fs-small);
+  color: var(--ink-3);
+  text-decoration: none;
+}
+
+.navLink[aria-current="page"] {
+  color: var(--ink);
+  box-shadow: inset 0 2px 0 var(--brass);
+}
+
+.navExtraItem {
+  display: none;
+}
+
+@media (min-width: 1024px) {
+  .nav {
+    top: 0;
+    right: auto;
+    width: 200px;
+    border-radius: 0;
+    background: var(--page);
+    border-right: 1px solid var(--rule);
+    padding: var(--space-6) var(--space-4);
+  }
+
+  .navList {
+    grid-template-columns: 1fr;
+    gap: var(--space-1);
+  }
+
+  .navLink {
+    justify-content: flex-start;
+    min-height: 40px;
+    padding: 0 var(--space-3);
+    font-size: var(--fs-body);
+  }
+
+  .navLink[aria-current="page"] {
+    box-shadow: inset 2px 0 0 var(--brass);
+    background: var(--surface);
+  }
+
+  .navMoreItem {
+    display: none;
+  }
+
+  .navExtraItem {
+    display: block;
+  }
+
+  .navMoreItem + .navExtraItem {
+    margin-top: var(--space-5);
+    padding-top: var(--space-5);
+    border-top: 1px solid var(--rule);
+  }
+}

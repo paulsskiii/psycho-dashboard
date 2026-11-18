@@ -1,0 +1,227 @@
+/* Shared layout for analysis pages (/form, /recovery, /intensity, …): title + one date-range
+   control, then tone bands on a 12-column grid from 1024 px. */
+
+.page {
+  display: grid;
+  gap: var(--space-2);
+}
+
+.head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--space-4);
+  padding: var(--space-6) var(--space-4) var(--space-5);
+}
+
+.title {
+  font-size: var(--fs-page-title);
+  color: var(--ink);
+}
+
+.grid {
+  display: grid;
+  gap: var(--space-2);
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.band {
+  background: var(--surface);
+  padding: var(--space-6) var(--space-4);
+  display: grid;
+  gap: var(--space-5);
+  align-content: start;
+  min-width: 0;
+}
+
+.stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3) var(--space-6);
+  margin: 0;
+}
+
+.stats dt {
+  font-size: var(--fs-small);
+  color: var(--ink-3);
+}
+
+.stats dd {
+  margin: 0;
+  font-size: var(--fs-stat);
+  font-weight: 600;
+  line-height: 1.15;
+}
+
+.note {
+  font-size: var(--fs-small);
+  color: var(--ink-3);
+  max-width: 60ch;
+}
+
+.toggleRow {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--fs-small);
+  color: var(--ink-2);
+  cursor: pointer;
+  min-height: 32px;
+}
+
+.toggleRow input {
+  accent-color: var(--brass);
+  width: 18px;
+  height: 18px;
+}
+
+.empty {
+  color: var(--ink-2);
+  font-size: var(--fs-small);
+}
+
+@media (min-width: 720px) {
+  .head,
+  .band {
+    padding-left: var(--space-7);
+    padding-right: var(--space-7);
+  }
+}
+
+@media (min-width: 1024px) {
+  .grid {
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+  }
+
+  .full {
+    grid-column: 1 / -1;
+  }
+
+  .wide {
+    grid-column: span 7;
+  }
+
+  .narrow {
+    grid-column: span 5;
+  }
+
+  .half {
+    grid-column: span 6;
+  }
+}
+
+/* Row lists inside a band (drifted-hard runs, PB board, sync runs …). */
+.list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.item {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: var(--space-1) var(--space-4);
+  min-height: 48px;
+  padding: var(--space-3) 0;
+  border-top: 1px solid var(--rule);
+  color: var(--ink);
+  text-decoration: none;
+}
+
+a.item:hover .itemName {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.itemMain {
+  display: grid;
+  gap: 2px;
+  min-width: 0;
+}
+
+.itemName {
+  font-weight: 600;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.itemMeta {
+  font-size: var(--fs-small);
+  color: var(--ink-3);
+}
+
+.itemValue {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+  font-weight: 600;
+}
+
+.itemValue small {
+  display: block;
+  font-weight: 400;
+  font-size: var(--fs-small);
+  color: var(--ink-3);
+}
+
+/* Two-or-three-way switch (Share / Hours, Ride / Strength). */
+.seg {
+  display: inline-flex;
+  gap: 2px;
+  padding: 2px;
+  border: 1px solid var(--rule);
+  border-radius: var(--radius-pill);
+  justify-self: start;
+}
+
+.seg button,
+.seg a {
+  min-height: 32px;
+  padding: 0 var(--space-3);
+  border: 0;
+  border-radius: var(--radius-pill);
+  background: none;
+  color: var(--ink-2);
+  font: inherit;
+  font-size: var(--fs-small);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+.seg [aria-pressed="true"],
+.seg [aria-current="page"] {
+  background: var(--raised);
+  color: var(--ink);
+  box-shadow: inset 0 0 0 1px var(--brass);
+}
+
+/* Sequential colour legend (e.g. air temperature): low label, ramp, high label. */
+.ramp {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--fs-small);
+  color: var(--ink-2);
+}
+
+.ramp span[aria-hidden] {
+  width: 96px;
+  height: 8px;
+  border-radius: 2px;
+}
+
+.tabs {
+  display: flex;
+  padding: 0 var(--space-4) var(--space-3);
+}
+
+@media (min-width: 720px) {
+  .tabs {
+    padding-left: var(--space-7);
+    padding-right: var(--space-7);
+  }
+}

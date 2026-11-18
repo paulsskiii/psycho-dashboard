@@ -1,0 +1,36 @@
+name: sync
+
+on:
+  workflow_dispatch:
+
+concurrency:
+  group: psycho-garmin
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    env:
+      TZ: Asia/Manila
+      GARMIN_PERSONAL_API_KEY: ${{ secrets.GARMIN_PERSONAL_API_KEY }}
+      SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+      SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          sparse-checkout: apps/worker
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: apps/worker/uv.lock
+      - name: Install worker
+        working-directory: apps/worker
+        run: pip install -q --disable-pip-version-check .
+      - name: Sync
+        working-directory: apps/worker
+        run: python -m psycho_worker --json-logs sync

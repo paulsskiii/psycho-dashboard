@@ -1,0 +1,274 @@
+.frame {
+  display: grid;
+  gap: var(--space-3);
+  min-width: 0;
+}
+
+.header {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: start;
+  gap: var(--space-4);
+}
+
+.title {
+  font-size: var(--fs-body);
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.description {
+  font-size: var(--fs-small);
+  color: var(--ink-3);
+  max-width: 60ch;
+}
+
+.legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-1) var(--space-4);
+  font-size: var(--fs-small);
+  color: var(--ink-2);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.legend li {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.swatch {
+  width: 10px;
+  height: 10px;
+  border-radius: var(--radius-data);
+  flex: none;
+}
+
+.swatchLine {
+  width: 14px;
+  height: 2px;
+  border-radius: 1px;
+  flex: none;
+}
+
+.toggle {
+  background: none;
+  border: 1px solid var(--rule);
+  color: var(--ink-2);
+  font-size: var(--fs-micro);
+  padding: 2px var(--space-2);
+  cursor: pointer;
+  min-height: 24px;
+}
+
+.toggle:hover {
+  background: var(--raised);
+  color: var(--ink);
+}
+
+.plot {
+  position: relative;
+  width: 100%;
+  min-width: 0;
+  transition: opacity 200ms ease;
+}
+
+.stale {
+  opacity: 0.6;
+}
+
+.plot svg {
+  display: block;
+  overflow: visible;
+}
+
+.plot svg:focus-visible {
+  outline: 2px solid var(--brass);
+  outline-offset: 4px;
+}
+
+.tick {
+  font-size: 12px;
+  fill: var(--ink-3);
+  font-variant-numeric: tabular-nums;
+}
+
+.directLabel {
+  font-size: 12px;
+  fill: var(--ink-2);
+  font-variant-numeric: tabular-nums;
+}
+
+.tooltip {
+  position: absolute;
+  z-index: 2;
+  pointer-events: none;
+  background: var(--raised);
+  border: 1px solid var(--rule);
+  padding: var(--space-2) var(--space-3);
+  font-size: var(--fs-small);
+  line-height: 1.35;
+  white-space: nowrap;
+  min-width: 96px;
+}
+
+.tooltip .tipTitle {
+  color: var(--ink-3);
+  font-size: var(--fs-micro);
+  margin-bottom: 2px;
+}
+
+.tooltip .tipRow {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.tooltip strong {
+  color: var(--ink);
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+.tooltip span.name {
+  color: var(--ink-3);
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--fs-small);
+  font-variant-numeric: tabular-nums;
+}
+
+.tableWrap {
+  max-height: 320px;
+  overflow: auto;
+}
+
+.table caption {
+  text-align: left;
+  color: var(--ink-3);
+  padding-bottom: var(--space-2);
+}
+
+.table th,
+.table td {
+  text-align: right;
+  padding: var(--space-1) var(--space-3);
+  border-bottom: 1px solid var(--rule);
+  white-space: nowrap;
+}
+
+.table th:first-child,
+.table td:first-child {
+  text-align: left;
+  padding-left: 0;
+}
+
+.table th {
+  color: var(--ink-3);
+  font-weight: 500;
+  position: sticky;
+  top: 0;
+  background: var(--surface);
+}
+
+/* Segmented bar */
+.segBar {
+  display: flex;
+  gap: 2px;
+  height: 28px;
+}
+
+.seg {
+  display: flex;
+  align-items: center;
+  padding: 0 var(--space-2);
+  font-size: var(--fs-micro);
+  font-weight: 600;
+  overflow: hidden;
+  white-space: nowrap;
+  min-width: 2px;
+}
+
+.seg:first-child {
+  border-radius: var(--radius-bar) 0 0 var(--radius-bar);
+}
+
+.seg:last-child {
+  border-radius: 0 var(--radius-bar) var(--radius-bar) 0;
+}
+
+.segLegend {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(96px, 1fr));
+  gap: var(--space-2) var(--space-4);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  font-size: var(--fs-small);
+}
+
+.segLegend li {
+  display: grid;
+  grid-template-columns: 10px 1fr;
+  column-gap: var(--space-2);
+  align-items: center;
+}
+
+.segLegend .segValue {
+  grid-column: 2;
+  color: var(--ink);
+  font-weight: 600;
+}
+
+.segLegend .segName {
+  color: var(--ink-3);
+}
+
+/* Meter */
+.meterValue {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-2);
+}
+
+.meterValue strong {
+  font-size: var(--fs-stat);
+  font-weight: 600;
+  line-height: 1.1;
+}
+
+.meterValue span {
+  color: var(--ink-2);
+  font-size: var(--fs-small);
+}
+
+.periods {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: var(--space-2);
+  font-size: var(--fs-small);
+}
+
+.periods li {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--space-1) var(--space-3);
+}
+
+.periodDates {
+  color: var(--ink-3);
+}
+
+.multiples {
+  display: grid;
+  gap: var(--space-4);
+}

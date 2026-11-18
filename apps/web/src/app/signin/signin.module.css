@@ -1,0 +1,64 @@
+.page {
+  min-height: 100dvh;
+  display: grid;
+  align-content: center;
+  gap: var(--space-7);
+  padding: var(--space-7) var(--space-4);
+  max-width: 440px;
+  margin: 0 auto;
+}
+
+.wordmark {
+  font-size: var(--fs-wordmark);
+}
+
+.form {
+  display: grid;
+  gap: var(--space-3);
+}
+
+.lede {
+  color: var(--ink-2);
+}
+
+.label {
+  color: var(--ink-3);
+  font-size: var(--fs-small);
+}
+
+.input {
+  font: inherit;
+  font-size: 20px;
+  color: var(--ink);
+  background: var(--surface);
+  border: 1px solid var(--axis);
+  padding: var(--space-3);
+  min-height: 48px;
+  font-variant-numeric: tabular-nums;
+}
+
+.input:focus-visible {
+  outline: 2px solid var(--brass);
+  outline-offset: 0;
+}
+
+.error {
+  color: var(--ink);
+  font-size: var(--fs-small);
+  border-left: 2px solid var(--status-serious);
+  padding-left: var(--space-2);
+}
+
+.button {
+  min-height: 48px;
+  background: var(--ink);
+  color: var(--page);
+  border: 0;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.button:disabled {
+  opacity: 0.6;
+  cursor: progress;
+}

@@ -1,0 +1,140 @@
+.head {
+  display: grid;
+  gap: var(--space-2);
+  padding: var(--space-6) var(--space-4) var(--space-5);
+}
+
+.back {
+  font-size: var(--fs-small);
+  color: var(--ink-3);
+  text-decoration: underline;
+  text-decoration-color: var(--axis);
+  text-underline-offset: 3px;
+  justify-self: start;
+  min-height: 24px;
+}
+
+.title {
+  font-size: var(--fs-section-title);
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.when {
+  color: var(--ink-3);
+  font-size: var(--fs-small);
+}
+
+.mapBand {
+  min-width: 0;
+}
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(148px, 1fr));
+  gap: var(--space-4) var(--space-5);
+  margin: 0;
+}
+
+.stats dt {
+  font-size: var(--fs-small);
+  color: var(--ink-3);
+  display: flex;
+  gap: var(--space-2);
+  align-items: baseline;
+}
+
+.stats dd {
+  margin: 0;
+  font-size: var(--fs-stat);
+  font-weight: 600;
+  line-height: 1.15;
+  /* A value and its unit never split across lines, and never spill into the next column. */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.src {
+  font-size: var(--fs-micro);
+  color: var(--ink-4);
+  border: 1px solid var(--rule);
+  padding: 0 4px;
+  line-height: 16px;
+}
+
+.h2 {
+  font-size: var(--fs-body);
+  font-weight: 600;
+}
+
+.splits {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--fs-small);
+  font-variant-numeric: tabular-nums;
+}
+
+.splits th,
+.splits td {
+  text-align: right;
+  padding: var(--space-1) var(--space-2);
+  border-bottom: 1px solid var(--rule);
+  white-space: nowrap;
+}
+
+.splits th:first-child {
+  text-align: left;
+  padding-left: 0;
+  color: var(--ink-3);
+  font-weight: 400;
+}
+
+.splits thead th {
+  color: var(--ink-3);
+  font-weight: 500;
+}
+
+.barCol {
+  width: 45%;
+  text-align: left !important;
+}
+
+.bar {
+  display: block;
+  height: 10px;
+  border-radius: 0 var(--radius-data) var(--radius-data) 0;
+}
+
+.sets {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  font-size: var(--fs-small);
+  font-variant-numeric: tabular-nums;
+}
+
+.sets li {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 64px 64px 56px;
+  gap: var(--space-3);
+  padding: var(--space-2) 0;
+  border-bottom: 1px solid var(--rule);
+  color: var(--ink-2);
+}
+
+.sets li span:not(:first-child) {
+  text-align: right;
+}
+
+.setName {
+  color: var(--ink);
+}
+
+@media (min-width: 720px) {
+  .head {
+    padding-left: var(--space-7);
+    padding-right: var(--space-7);
+  }
+}

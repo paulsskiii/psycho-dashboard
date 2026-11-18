@@ -1,0 +1,198 @@
+.filters {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 2px;
+  padding: 2px;
+  border: 1px solid var(--rule);
+  border-radius: var(--radius-pill);
+  background: var(--surface);
+}
+
+.filter {
+  display: inline-flex;
+  align-items: center;
+  min-height: 32px;
+  padding: 0 var(--space-3);
+  border-radius: var(--radius-pill);
+  font-size: var(--fs-small);
+  color: var(--ink-2);
+  text-decoration: none;
+}
+
+.filter:hover {
+  color: var(--ink);
+}
+
+.filter[aria-current="page"] {
+  background: var(--raised);
+  color: var(--ink);
+  box-shadow: inset 0 0 0 1px var(--brass);
+}
+
+.band {
+  background: var(--surface);
+  padding: var(--space-3) var(--space-4) var(--space-6);
+}
+
+.empty {
+  color: var(--ink-2);
+  padding: var(--space-5) 0;
+}
+
+.list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* Phone: thumbnail | name + date, then the numbers on a second line. */
+.row,
+.headRow {
+  display: grid;
+  grid-template-columns: 44px minmax(0, 1fr) repeat(3, auto);
+  grid-template-areas:
+    "thumb main main main"
+    "thumb dist time load";
+  column-gap: var(--space-3);
+  row-gap: var(--space-1);
+  align-items: center;
+}
+
+.row {
+  padding: var(--space-3) 0;
+  border-bottom: 1px solid var(--rule);
+  text-decoration: none;
+  color: inherit;
+  min-height: 64px;
+}
+
+.row:hover .name {
+  text-decoration: underline;
+  text-decoration-color: var(--axis);
+  text-underline-offset: 3px;
+}
+
+.headRow {
+  display: none;
+}
+
+.thumb {
+  grid-area: thumb;
+  width: 44px;
+  height: 44px;
+  display: grid;
+  place-items: center;
+  background: var(--page);
+}
+
+.noGps {
+  width: 10px;
+  height: 10px;
+  border-radius: var(--radius-data);
+}
+
+.main {
+  grid-area: main;
+  display: grid;
+  min-width: 0;
+}
+
+.name {
+  font-weight: 600;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.date {
+  font-size: var(--fs-small);
+  color: var(--ink-3);
+}
+
+.cell {
+  font-size: var(--fs-small);
+  color: var(--ink-2);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+/* Phone: distance, time and load on the second line; pace, HR and TE are wide-screen columns.
+   Cells are targeted by their label — positional selectors break because the thumb and name are
+   spans too. */
+.cell[data-label="Distance"] {
+  grid-area: dist;
+}
+
+.cell[data-label="Time"] {
+  grid-area: time;
+}
+
+.cell[data-label="Load"] {
+  grid-area: load;
+}
+
+.cell[data-label="Load"]::before {
+  content: "Load ";
+  color: var(--ink-4);
+}
+
+.cell[data-label="Pace"],
+.cell[data-label="Avg HR"],
+.cell[data-label="TE"] {
+  display: none;
+}
+
+.more {
+  padding: var(--space-5) 0 0;
+  font-size: var(--fs-small);
+  color: var(--ink-3);
+  min-height: 24px;
+}
+
+@media (min-width: 720px) {
+  .band {
+    padding-left: var(--space-7);
+    padding-right: var(--space-7);
+  }
+}
+
+@media (min-width: 1024px) {
+  .row,
+  .headRow {
+    grid-template-columns: 44px minmax(0, 1fr) 88px 88px 96px 88px 56px 40px;
+    grid-template-areas: none;
+    column-gap: var(--space-4);
+  }
+
+  .headRow {
+    display: grid;
+    padding: var(--space-3) 0;
+    border-bottom: 1px solid var(--axis);
+    font-size: var(--fs-small);
+    color: var(--ink-3);
+  }
+
+  .headRow span:nth-child(n + 3),
+  .cell {
+    text-align: right;
+  }
+
+  .thumb,
+  .main,
+  .cell[data-label] {
+    grid-area: auto;
+    display: block;
+  }
+
+  .thumb {
+    display: grid;
+  }
+
+  .main {
+    display: grid;
+  }
+
+  .cell[data-label="Load"]::before {
+    content: none;
+  }
+}

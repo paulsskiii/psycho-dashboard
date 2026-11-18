@@ -1,0 +1,57 @@
+name: ci
+
+# Pull requests and manual runs only (spec §6.3): CI must not spend the sync budget.
+on:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  worker:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: apps/worker/uv.lock
+      - name: Install
+        working-directory: apps/worker
+        run: pip install -q --disable-pip-version-check ".[dev]"
+      - name: Lint
+        working-directory: apps/worker
+        run: ruff check psycho_worker tests && ruff format --check psycho_worker tests
+      - name: Test
+        working-directory: apps/worker
+        run: pytest -q
+      - name: Secret grep
+        run: |
+          ! git grep -nE 'GCDC_[0-9a-f]{8}|eyJhbGciOi|sb_secret_|service_role.*eyJ' -- . ':!*.md' ':!.github/workflows/ci.yml'
+
+  web:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+      - name: Install
+        run: pnpm install --frozen-lockfile
+      - name: Palette validator
+        run: pnpm palette
+      - name: Typecheck
+        run: pnpm typecheck
+      - name: Lint
+        run: pnpm lint
+      - name: Build
+        run: pnpm build
+      - name: No secrets in the client bundle
+        run: |
+          ! grep -rEl 'sb_secret_|service_role|GARMIN_PERSONAL_API_KEY|GITHUB_DISPATCH_TOKEN' apps/web/.next/static

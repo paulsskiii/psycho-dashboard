@@ -1,0 +1,54 @@
+# Secrets and tokens — never commit
+.env
+.env.*
+!.env.example
+**/garmin_tokens.json
+**/garmin_tokens/
+**/*.token
+**/.garth/
+**/secrets/
+**/.secrets/
+apps/worker/.secrets/
+
+# macOS
+.DS_Store
+
+# Node / Next.js
+node_modules/
+.next/
+out/
+.vercel/
+*.tsbuildinfo
+.pnpm-store/
+
+# Python
+.venv/
+__pycache__/
+*.pyc
+*.egg-info/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+dist/
+build/
+
+# Supabase local
+supabase/.branches/
+supabase/.temp/
+
+# Phase 0 raw (unsanitised) pulls live outside fixtures/ and are never committed
+apps/worker/.raw/
+
+# Generated design tokens and the /lab real-data snapshot (personal data; never commit)
+packages/tokens/dist/
+apps/web/.lab/
+apps/web/next-env.d.ts
+
+# Playwright / Lighthouse local output
+apps/web/screenshots/
+apps/web/test-results/
+apps/web/playwright-report/
+apps/web/lighthouse/
+
+# Playwright signed-in session for local screenshot tests (a credential; never commit)
+apps/web/.auth/
